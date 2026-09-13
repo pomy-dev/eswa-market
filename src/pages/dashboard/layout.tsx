@@ -1,12 +1,8 @@
-import { Outlet, Link, useLocation, Navigate } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { LayoutDashboard, ListOrdered, ShoppingBag, Bell, CreditCard, Settings, Plus, Leaf, LogOut, User } from "lucide-react";
-import { Authenticated, Unauthenticated } from "convex/react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api.js";
 import { SignInButton } from "@/components/ui/signin.tsx";
 import { cn } from "@/lib/utils.ts";
 import { Badge } from "@/components/ui/badge.tsx";
-import { Skeleton } from "@/components/ui/skeleton.tsx";
 import { useAuth } from "@/hooks/use-auth.ts";
 
 const navItems = [
@@ -27,8 +23,9 @@ function DashboardSidebar({ unreadCount }: { unreadCount: number }) {
       {/* Logo */}
       <div className="p-5 border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
-            <Leaf className="w-3.5 h-3.5 text-accent-foreground" />
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center">
+            {/* <Leaf className="w-3.5 h-3.5 text-accent-foreground" /> */}
+            <img src="/icon/logo.png" alt="" />
           </div>
           <span className="font-serif font-bold text-base text-sidebar-foreground">DigitalEdge</span>
         </Link>
@@ -108,21 +105,7 @@ function DashboardBottomNav({ unreadCount }: { unreadCount: number }) {
 }
 
 function DashboardGuard() {
-  const user = useQuery(api.users.getCurrentUser);
-  const notifications = useQuery(api.notifications.getMyNotifications) ?? [];
-  const unreadCount = notifications.filter((n) => !n.read).length;
-
-  if (user === undefined) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Skeleton className="h-10 w-48" />
-      </div>
-    );
-  }
-
-  if (user?.role !== "seller") {
-    return <Navigate to="/become-seller" replace />;
-  }
+  const unreadCount = 0;
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -136,20 +119,22 @@ function DashboardGuard() {
 }
 
 export default function DashboardLayout() {
-  return (
-    <>
-      <Authenticated>
-        <DashboardGuard />
-      </Authenticated>
-      <Unauthenticated>
-        <div className="min-h-screen flex items-center justify-center bg-background">
-          <div className="text-center space-y-4">
-            <Leaf className="w-12 h-12 text-primary mx-auto" />
-            <h2 className="font-semibold text-xl">Sign in to access your dashboard</h2>
-            <SignInButton className="h-11 px-6" />
-          </div>
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center space-y-4">
+          {/* <Leaf className="w-12 h-12 text-primary mx-auto" /> */}
+          <img src="/icon/logo.png" alt="" className="w-12 h-12 text-primary mx-auto" />
+          <h2 className="font-semibold text-xl">Sign in to access your dashboard</h2>
+          <SignInButton className="h-11 px-6" />
         </div>
-      </Unauthenticated>
-    </>
+      </div>
+    );
+  }
+
+  return (
+    <DashboardGuard />
   );
 }

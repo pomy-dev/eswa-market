@@ -9,13 +9,13 @@ export default function DashboardPayments() {
   const ordersResult = useQuery(api.orders.getSellerOrders, { paginationOpts: { numItems: 50, cursor: null } });
   const orders = ordersResult?.page ?? [];
 
-  const completed = orders.filter((o) => o.status === "completed");
-  const pending = orders.filter((o) => ["pending", "confirmed", "in_progress"].includes(o.status));
-  const cancelled = orders.filter((o) => o.status === "cancelled");
-  const totalEarned = completed.reduce((s, o) => s + o.amount, 0);
-  const pendingAmount = pending.reduce((s, o) => s + o.amount, 0);
+  const completed = orders.filter((o: any) => o.status === "completed");
+  const pending = orders.filter((o: any) => ["pending", "confirmed", "in_progress"].includes(o.status));
+  const cancelled = orders.filter((o: any) => o.status === "cancelled");
+  const totalEarned = completed.reduce((s: any, o: any) => s + o.amount, 0);
+  const pendingAmount = pending.reduce((s: any, o: any) => s + o.amount, 0);
 
-  if (ordersResult === undefined) return <div className="p-8"><Skeleton className="h-10 w-full" /></div>;
+  // if (ordersResult === undefined) return <div className="p-8"><Skeleton className="h-10 w-full" /></div>;
 
   const stats = [
     { label: "Total Earned", value: `R${totalEarned.toLocaleString()}`, icon: DollarSign, color: "text-green-600", bg: "bg-green-50 dark:bg-green-900/20" },
@@ -55,7 +55,7 @@ export default function DashboardPayments() {
             <p className="text-sm text-muted-foreground text-center py-8">No payment history yet.</p>
           ) : (
             <div className="divide-y divide-border">
-              {orders.map((order) => (
+              {orders.map((order: any) => (
                 <div key={order._id} className="flex items-center gap-4 py-3 first:pt-0 last:pb-0">
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium">{order.buyerName ?? "Anonymous"}</p>
@@ -66,11 +66,10 @@ export default function DashboardPayments() {
                   <div className="flex items-center gap-3 shrink-0">
                     <span className="font-semibold">R{order.amount.toLocaleString()}</span>
                     <Badge
-                      className={`text-xs capitalize ${
-                        order.status === "completed" ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-0"
-                          : order.status === "cancelled" ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-0"
+                      className={`text-xs capitalize ${order.status === "completed" ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-0"
+                        : order.status === "cancelled" ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-0"
                           : "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border-0"
-                      }`}
+                        }`}
                     >
                       {order.status}
                     </Badge>

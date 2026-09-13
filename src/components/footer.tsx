@@ -12,13 +12,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                <Leaf className="w-4 h-4 text-accent-foreground" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+                {/* <Leaf className="w-4 h-4 text-accent-foreground" /> */}
+                <img src="/icon/logo.png" alt="" />
               </div>
               <span className="font-serif font-bold text-xl tracking-tight">DigitalEdge</span>
             </Link>
             <p className="text-sm text-sidebar-foreground/60 leading-relaxed mb-4">
-              South Africa's marketplace for digital marketing, properties, transport, and communications.
+              Eswatini's marketplace for digital marketing, properties, transport, and communications.
             </p>
             <div className="flex items-center gap-3">
               {["X", "in", "IG", "f"].map((label, i) => (
@@ -69,22 +70,22 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-sidebar-foreground/60">
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 shrink-0 text-accent" />
-                <span>hello@digitaledge.co.za</span>
+                <span>hello@eswamarket.com</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 shrink-0 text-accent" />
-                <span>+27 (0)11 123 4567</span>
+                <span>+268 7623 4567</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 shrink-0 text-accent mt-0.5" />
-                <span>Sandton, Johannesburg, South Africa</span>
+                <span>Nation-Wide & Beyond</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-sidebar-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-sidebar-foreground/40">
-          <p>&copy; {new Date().getFullYear()} DigitalEdge by Mduduzi Ngwenya. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Eswa-Market by Mduduzi Ngwenya. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-sidebar-foreground transition-colors cursor-pointer">Privacy Policy</a>
             <a href="#" className="hover:text-sidebar-foreground transition-colors cursor-pointer">Terms of Service</a>

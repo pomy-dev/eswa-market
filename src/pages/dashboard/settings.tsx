@@ -36,7 +36,7 @@ export default function DashboardSettings() {
     },
   });
 
-  if (user === undefined) return <div className="p-8"><Skeleton className="h-10 w-full" /></div>;
+  // if (user === undefined) return <div className="p-8"><Skeleton className="h-10 w-full" /></div>;
 
   const onSubmit = async (data: FormData) => {
     try {

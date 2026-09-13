@@ -1,13 +1,13 @@
-import { ConvexProviderWithHerculesAuth } from "@usehercules/auth/convex-react";
-import { ConvexReactClient } from "convex/react";
+import { ConvexProviderWithAuth, ConvexReactClient } from "convex/react";
+import { useAuth } from "./auth.tsx";
 
 const convexUrl = import.meta.env.VITE_CONVEX_URL ?? "http://localhost:3000";
 const convex = new ConvexReactClient(convexUrl);
 
 export function ConvexProvider({ children }: { children: React.ReactNode }) {
   return (
-    <ConvexProviderWithHerculesAuth client={convex}>
+    <ConvexProviderWithAuth client={convex} useAuth={useAuth}>
       {children}
-    </ConvexProviderWithHerculesAuth>
+    </ConvexProviderWithAuth>
   );
 }

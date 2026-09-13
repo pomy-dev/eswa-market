@@ -48,7 +48,7 @@ function NavbarInner() {
   const navigate = useNavigate();
   const location = useLocation();
   const notifications = useQuery(api.notifications.getMyNotifications) ?? [];
-  const unread = notifications.filter((n) => !n.read).length;
+  const unread = notifications.filter((n: any) => !n.read).length;
   const currentUser = useQuery(api.users.getCurrentUser);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -68,22 +68,17 @@ function NavbarInner() {
           <div className="flex items-center justify-between h-14 md:h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 shrink-0">
-              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                <Leaf className="w-4 h-4 text-accent-foreground" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+                {/* <Leaf className="w-4 h-4 text-accent-foreground" /> */}
+                <img src="/icon/logo.png" alt="" />
               </div>
               <span className="font-serif font-bold text-xl text-sidebar-foreground tracking-tight">
-                DigitalEdge
+                Eswa-Market
               </span>
             </Link>
 
             {/* Desktop nav links */}
             <nav className="hidden md:flex items-center gap-1">
-              <Link
-                to="/"
-                className="px-3 py-2 text-sm font-medium text-sidebar-foreground/70 hover:text-sidebar-foreground transition-colors rounded-md hover:bg-sidebar-accent cursor-pointer"
-              >
-                Home
-              </Link>
               {/* Categories dropdown */}
               <div className="relative">
                 <button
@@ -215,6 +210,8 @@ function NavbarInner() {
                   </Button>
                 </Link>
               </Authenticated>
+
+              {/* Signin */}
               <Unauthenticated>
                 <SignInButton className="h-8 text-xs px-3 bg-accent text-accent-foreground hover:bg-accent/90 border-0" />
               </Unauthenticated>

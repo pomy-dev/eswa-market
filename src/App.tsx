@@ -3,6 +3,7 @@ import { DefaultProviders } from "./components/providers/default.tsx";
 import { CartProvider } from "./components/providers/cart-provider.tsx";
 import { useServiceWorker } from "./hooks/use-service-worker.ts";
 import AuthCallback from "./pages/auth/Callback.tsx";
+import AuthPage from "./pages/auth/page.tsx";
 import AppLayout from "./components/app-layout.tsx";
 // Public pages
 import HomePage from "./pages/home/page.tsx";
@@ -32,6 +33,7 @@ function AppInner() {
     <BrowserRouter>
       <Routes>
         <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route path="/auth" element={<AuthPage />} />
 
         {/* Seller Dashboard (no main layout) */}
         <Route path="/dashboard" element={<DashboardLayout />}>

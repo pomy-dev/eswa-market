@@ -20,9 +20,9 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const contactInfo = [
-  { icon: Mail, title: "Email Us", detail: "hello@digitaledge.co.za", sub: "We reply within 24 hours" },
-  { icon: Phone, title: "Call Us", detail: "+27 (0)11 123 4567", sub: "Mon–Fri, 8am–5pm SAST" },
-  { icon: MapPin, title: "Visit Us", detail: "Sandton, Johannesburg", sub: "South Africa" },
+  { icon: Mail, title: "Email Us", detail: "hello@eswamarket.com", sub: "We reply within 24 hours" },
+  { icon: Phone, title: "Call Us", detail: "+268 7623 4567", sub: "Mon–Fri, 8am–5pm SAST" },
+  { icon: MapPin, title: "Visit Us", detail: "My Village, Area", sub: "Eswatini" },
   { icon: Clock, title: "Office Hours", detail: "Mon–Fri: 8am–5pm", sub: "Saturday: 9am–1pm" },
 ];
 
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   <Label htmlFor="phone">
                     Phone <span className="text-muted-foreground text-xs">(optional)</span>
                   </Label>
-                  <Input id="phone" placeholder="+27 82 123 4567" {...register("phone")} />
+                  <Input id="phone" placeholder="+268 7600 0000" {...register("phone")} />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="subject">Subject</Label>

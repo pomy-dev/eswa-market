@@ -16,18 +16,18 @@ export default function DashboardOverview() {
 
   const listings = listingsResult?.page ?? [];
   const orders = ordersResult?.page ?? [];
-  const unread = notifications.filter((n) => !n.read).length;
-  const totalRevenue = orders.filter((o) => o.status === "completed").reduce((s, o) => s + o.amount, 0);
-  const pendingOrders = orders.filter((o) => o.status === "pending").length;
+  const unread = notifications.filter((n: any) => !n.read).length;
+  const totalRevenue = orders.filter((o: any) => o.status === "completed").reduce((s: any, o: any) => s + o.amount, 0);
+  const pendingOrders = orders.filter((o: any) => o.status === "pending").length;
 
   const stats = [
-    { label: "Active Listings", value: listings.filter((l) => l.status === "active").length.toString(), icon: ListOrdered, color: "text-primary", bg: "bg-primary/10" },
+    { label: "Active Listings", value: listings.filter((l: any) => l.status === "active").length.toString(), icon: ListOrdered, color: "text-primary", bg: "bg-primary/10" },
     { label: "Total Orders", value: orders.length.toString(), icon: ShoppingBag, color: "text-accent-foreground", bg: "bg-accent/20" },
     { label: "Pending Orders", value: pendingOrders.toString(), icon: TrendingUp, color: "text-orange-600", bg: "bg-orange-50 dark:bg-orange-900/20" },
     { label: "Total Revenue", value: `R${totalRevenue.toLocaleString()}`, icon: DollarSign, color: "text-green-600", bg: "bg-green-50 dark:bg-green-900/20" },
   ];
 
-  if (user === undefined) return <div className="p-8"><Skeleton className="h-10 w-full" /></div>;
+  // if (user === undefined) return <div className="p-8"><Skeleton className="h-10 w-full" /></div>;
 
   return (
     <div className="p-6 lg:p-8 space-y-8">
@@ -75,7 +75,7 @@ export default function DashboardOverview() {
               <p className="text-sm text-muted-foreground text-center py-6">No notifications yet</p>
             ) : (
               <div className="space-y-3">
-                {notifications.slice(0, 5).map((n) => (
+                {notifications.slice(0, 5).map((n: any) => (
                   <div key={n._id} className={`flex items-start gap-3 p-3 rounded-lg ${!n.read ? "bg-primary/5 border border-primary/10" : "bg-muted/30"}`}>
                     <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${n.read ? "bg-muted-foreground/30" : "bg-primary"}`} />
                     <div className="flex-1 min-w-0">
@@ -102,7 +102,7 @@ export default function DashboardOverview() {
               <p className="text-sm text-muted-foreground text-center py-6">No orders yet</p>
             ) : (
               <div className="space-y-3">
-                {orders.slice(0, 5).map((o) => (
+                {orders.slice(0, 5).map((o: any) => (
                   <div key={o._id} className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-muted-foreground">{o.buyerName ?? "A buyer"}</p>
@@ -142,7 +142,7 @@ export default function DashboardOverview() {
             </div>
           ) : (
             <div className="divide-y divide-border">
-              {listings.slice(0, 5).map((l) => (
+              {listings.slice(0, 5).map((l: any) => (
                 <div key={l._id} className="flex items-center gap-4 py-3 first:pt-0 last:pb-0">
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium line-clamp-1">{l.title}</p>

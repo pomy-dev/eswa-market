@@ -1,14 +1,15 @@
 import { forwardRef, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { type VariantProps } from "class-variance-authority";
 import { Loader2, LogIn, LogOut } from "lucide-react";
 import { toast } from "sonner";
-import { useAuth } from "@usehercules/auth/react";
+import { useAuth } from "@/hooks/use-auth.ts";
 import { Button, buttonVariants } from "@/components/ui/button.tsx";
 
 export interface SignInButtonProps
   extends
-    Omit<React.ComponentProps<"button">, "onClick">,
-    VariantProps<typeof buttonVariants> {
+  Omit<React.ComponentProps<"button">, "onClick">,
+  VariantProps<typeof buttonVariants> {
   /**
    * Custom onClick handler that runs before authentication action
    */
@@ -61,7 +62,8 @@ export const SignInButton = forwardRef<HTMLButtonElement, SignInButtonProps>(
     },
     ref,
   ) => {
-    const { isAuthenticated, signin, signout, isLoading, error } = useAuth();
+    const navigate = useNavigate();
+    const { isAuthenticated, signout, isLoading, error } = useAuth();
 
     useEffect(() => {
       if (error) {
@@ -81,14 +83,14 @@ export const SignInButton = forwardRef<HTMLButtonElement, SignInButtonProps>(
           if (isAuthenticated) {
             await signout();
           } else {
-            await signin();
+            navigate("/auth");
           }
         } catch (err) {
           console.error("Authentication error:", err);
           // Don't prevent the default here as the auth library handles errors
         }
       },
-      [isAuthenticated, signout, signin, onClick],
+      [isAuthenticated, signout, navigate, onClick],
     );
 
     const isDisabled = disabled || isLoading;

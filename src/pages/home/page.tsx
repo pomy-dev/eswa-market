@@ -60,7 +60,7 @@ export default function HomePage() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}>
             <Badge className="mb-6 bg-accent/20 text-accent border-accent/40 text-xs font-semibold px-4 py-1.5">
               <Leaf className="w-3 h-3 mr-1.5" />
-              South Africa's Multi-Category Marketplace
+              Eswatini's Multi-Category Marketplace
             </Badge>
 
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-sidebar-foreground leading-[1.05] text-balance mb-6">
