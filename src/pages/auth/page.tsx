@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Leaf, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth.ts";

@@ -21,7 +21,7 @@ export default function DashboardNotifications() {
   const notifications = useQuery(api.notifications.getMyNotifications) ?? [];
   const markRead = useMutation(api.notifications.markRead);
   const markAllRead = useMutation(api.notifications.markAllRead);
-  const unread = notifications.filter((n) => !n.read).length;
+  const unread = notifications.filter((n: any) => !n.read).length;
 
   const handleMarkRead = async (id: Id<"notifications">) => {
     try { await markRead({ notificationId: id }); } catch { /* silent */ }
@@ -62,7 +62,7 @@ export default function DashboardNotifications() {
         </Card>
       ) : (
         <div className="space-y-2">
-          {notifications.map((n) => {
+          {notifications.map((n: any) => {
             const Icon = typeIcon[n.type] ?? Bell;
             return (
               <Card
