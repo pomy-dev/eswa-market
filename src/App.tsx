@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DefaultProviders } from "./components/providers/default.tsx";
+import { LocationProvider } from "./components/providers/location-provider.tsx";
 import { CartProvider } from "./components/providers/cart-provider.tsx";
 import { useServiceWorker } from "./hooks/use-service-worker.ts";
 import AuthCallback from "./pages/auth/Callback.tsx";
@@ -69,9 +70,11 @@ function AppInner() {
 export default function App() {
   return (
     <DefaultProviders>
-      <CartProvider>
-        <AppInner />
-      </CartProvider>
+      <LocationProvider>
+        <CartProvider>
+          <AppInner />
+        </CartProvider>
+      </LocationProvider>
     </DefaultProviders>
   );
 }

@@ -137,3 +137,35 @@
     cursor: pointer;
   }
 }
+
+/* Hide scrollbar but keep scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+/* Ken Burns effect — background zooms from far → full → back */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.0);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 16s ease-in-out infinite;
+}
